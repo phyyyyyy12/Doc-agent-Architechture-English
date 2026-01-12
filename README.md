@@ -6,7 +6,7 @@
 
 | 核心组件 | 💡 当前架构方案 (Status Quo) | 🔄 架构演进思考 (ADR/Deep Dive) |
 | :--- | :--- | :--- |
-| **1. 记忆管理 (Memory)** | [动态 Token 窗口与语义压缩](./docs/memory/index.md) | [从“数轮数”到“算 Token”](./docs/memory/evolution.md) |
+| **1. 记忆管理 (Memory)** | [动态 Token 窗口与语义压缩](./docs/memory/index.md) | [从“全都要”到“算 Token”](./docs/memory/evolution.md) |
 | **2. 文档解析 (Parser)** | [Markdown 结构感知智能分块](./docs/parser/index.md) | [从“暴力切分”到“结构化感知”](./docs/parser/evolution.md) |
 | **3. 查询优化 (Query)** | [语义层级检索策略](./docs/query/index.md) | [如何利用 md 结构提升召回率](./docs/query/evolution.md) |
 
