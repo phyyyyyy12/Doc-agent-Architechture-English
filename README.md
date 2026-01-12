@@ -1,18 +1,24 @@
 # 🏢 Doc-Agent Architecture
 > 基于 Markdown 文档深度解析的企业级问答 Agent 架构演进实录
 
----
 
 ## 🗺️ 技术矩阵 (Architecture Navigation)
 
-| 核心组件 | 技术实现说明 (Status Quo) | 深度思考与改动日志 (Deep Dive) |
+| 核心组件 | 💡 当前架构方案 (Status Quo) | 🔄 深度思考与改动日志 (ADR/Deep Dive) |
 | :--- | :--- | :--- |
-| **1. 记忆管理 (Memory)** | 动态 Token 滑动窗口过滤 | [从固定轮数到信息熵管理的演进](./docs/memory/evolution.md) |
-| **2. 查询优化 (Query)** | MD 标题级语义检索优化 | [如何利用 md 结构提升召回率](./docs/query/evolution.md) |
-| **3. 文档解析 (Parser)** | 标题树状结构化提取 | [解决 md 嵌套列表的解析痛点](./docs/parser/evolution.md) |
+| **1. 记忆管理 (Memory)** | [分层缓冲区设计](./docs/memory/index.md) | [从固定轮数到信息熵管理的演进](./docs/memory/evolution.md) |
+| **2. 文档解析 (Parser)** | [标题树感知分块](./docs/parser/index.md) | [解决 md 嵌套列表的解析痛点](./docs/parser/evolution.md) |
+| **3. 查询优化 (Query)** | [语义层级检索策略](./docs/query/index.md) | [如何利用 md 结构提升召回率](./docs/query/evolution.md) |
 
 ---
 
 ## 🎯 项目核心价值
-1. **结构化认知**：不只是 RAG，而是通过识别 md 的 `#` 标题层级建立知识索引。
-2. **决策可追溯**：通过 `evolution.md` 记录每一次技术路线的更迭。
+1. **结构化认知**：不只是简单的 RAG，而是通过识别 Markdown 的 `#` 标题层级建立深层知识索引，确保检索不丢失背景信息。
+2. **决策可追溯**：采用“演进日志”模式，记录在吸纳豆包 Agent 等前沿设计思想后，如何优化自身的 Token 管理与记忆系统。
+3. **工业级落地**：重点解决长文档场景下的 Context Overflow（上下文溢出）问题。
+
+---
+
+## 📂 快速访问核心实现 (Source Code)
+* `src/memory_manager.py`: 实现动态 Token 权重裁剪算法。
+* `src/md_parser.py`: 基于标题路径（Breadcrumb）的结构化切片逻辑。
