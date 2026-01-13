@@ -1,41 +1,43 @@
-## 🛠 技术演进与思考 (Evolution & Insights)
+## 🛠 Evolution & Insights
 
-> "RAG 的胜负手在于数据清洗。解析时多做一分努力，检索时能省十分力气。"
+> "The success of RAG is determined by data cleaning. Every extra effort spent on parsing saves ten times the effort during retrieval."
 
-### 📅 项目里程碑
+### 📅 Project Milestones
 
-#### **v2.0 - 结构化感知解析器 (Current)** `2026-01-06`
+#### **v2.0 - Structure-Aware Parser (Current)** `2026-01-06`
 
-* **核心理念：** 放弃“暴力切分”，转向“语法深度解析”。
-* **关键改进：**
-* **智能边界：** 引入 `Boundary Protection`，对代码块 (Code Blocks) 和表格 (Tables) 进行强校验，严禁跨行切分。
-* **语义注入：** 实现 `Breadcrumb` 策略，每个 Chunk 自动继承父级上下文路径。
-* **字段规范：** 统一元数据格式（包含 `source_file`, `breadcrumb`, `heading_level` 等），支持精准的 Metadata Filtering。
+* **Core Philosophy:** Moving away from "brute-force splitting" toward "deep syntactic parsing."
+* **Key Improvements:**
+* **Intelligent Boundaries:** Introduced `Boundary Protection` with strict validation for Code Blocks and Tables, strictly prohibiting cross-line splitting.
+* **Semantic Injection:** Implemented the `Breadcrumb` strategy, where each chunk automatically inherits its parent context path.
+* **Field Standardization:** Unified metadata format (including `source_file`, `breadcrumb`, `heading_level`, etc.) to support precision Metadata Filtering.
 
 
-* **断舍离：** 明确专注 Markdown 生态，放弃复杂的 RST 支持，追求极致的解析速度与准确度。
+* **Strategic Focus:** Explicitly focused on the Markdown ecosystem, deprecating complex RST support to pursue maximum parsing speed and accuracy.
 
-#### **v1.0 - 基础切分方案** `2025-12-22`
+#### **v1.0 - Basic Chunking Scheme** `2025-12-22`
 
-* **做法：** 固定字符长度切分 (Fixed-size Chunking)。
-* **痛点：** 存在严重的语义断裂和上下文丢失问题，导致 Agent 在代码解释场景表现不佳。
+* **Approach:** Fixed-size Character Chunking.
+* **Pain Points:** Suffered from severe semantic fragmentation and loss of context, leading to poor Agent performance in code explanation scenarios.
 
 ---
 
-## ⚖️ 方案对比 (Comparison)
+## ⚖️ Architecture Comparison
 
-| 特性 | v1.0 暴力切分 | v2.0 结构化感知 (Current) |
+| Feature | v1.0 Brute-Force Splitting | v2.0 Structure-Aware (Current) |
 | --- | --- | --- |
-| **切分依据** | 固定字符数 | **Markdown 标题层级 (# - ###)** |
-| **代码完整性** | 经常被截断 | **正则保护，严禁内部切分** |
-| **语义背景** | 无 | **Breadcrumb (文件名 > 父标题 > 子标题)** |
-| **元数据** | 仅文件名 | **丰富的多维度标签 (Heading/Level/Format)** |
-| **检索效果** | 易偏离主题 | **精准定位语义背景** |
+| **Criteria** | Fixed character count | **Markdown Heading Hierarchy (# to ###)** |
+| **Code Integrity** | Frequently truncated | **Regex Protection; internal splitting prohibited** |
+| **Semantic Context** | None | **Breadcrumb (File > Parent Header > Sub-header)** |
+| **Metadata** | Filename only | **Rich multi-dimensional tags (Heading/Level/Format)** |
+| **Retrieval Quality** | Prone to drifting off-topic | **Precise localization of semantic background** |
 
 ---
 
-## 🔮 未来挑战 (Roadmap)
+## 🔮 Roadmap & Future Challenges
 
-* [ ] **多模态增强：** 针对 Markdown 中嵌套的 **Mermaid** 图表进行语义提取。
-* [ ] **复杂公式：** 优化 **LaTeX** 公式的块边界保护。
-* [ ] **动态阈值：** 根据内容复杂度自动调整 `max_tokens`。
+* [ ] **Multimodal Enhancement:** Semantic extraction for **Mermaid** diagrams embedded within Markdown.
+* [ ] **Complex Formulas:** Optimize block boundary protection for **LaTeX** equations.
+* [ ] **Dynamic Thresholds:** Automatically adjust `max_tokens` based on content complexity.
+
+Would you like me to draft a sample **JSON Metadata Schema** for your v2.0 parser?
