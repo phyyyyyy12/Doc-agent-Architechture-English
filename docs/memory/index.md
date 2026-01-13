@@ -1,39 +1,39 @@
-# Memory 模块：动态 Token 窗口与语义压缩管理
+# Memory Module: Dynamic Token Window & Semantic Compression
 
-本模块负责 Agent 对话过程中的记忆维护，解决了长文档检索场景下常见的上下文溢出与噪声干扰问题。
+This module manages the Agent's dialogue memory, specifically addressing common issues in long-document retrieval scenarios, such as context overflow and noise interference.
 
-## 🌟 核心特性 / Key Features
+## 🌟 Key Features
 
-### 1. 动态 Token 窗口管理 (Dynamic Token Window)
+### 1. Dynamic Token Window Management
 
-不再依赖不稳定的“固定轮数”策略，而是基于模型 Context Window 进行实时精算：
+Moving beyond unstable "fixed-turn" strategies, this module performs real-time actuarial calculations based on the model's Context Window:
 
-* **实时配额监控：** 每一轮对话前自动计算已用 Token 和剩余空间。
-* **锚点保护 (Anchor Protection)：** 强制固定 `System Prompt`，确保 Agent 的核心指令在任何极端情况下都不会被挤出上下文。
+* **Real-time Quota Monitoring:** Automatically calculates used tokens and remaining space before each dialogue turn.
+* **Anchor Protection:** Force-anchors the `System Prompt` to ensure core instructions are never evicted from the context, even in extreme scenarios.
 
-### 2. 差异化留存策略 (Tiered Retention)
+### 2. Tiered Retention Strategy
 
-针对 RAG 场景设计了非对称的记忆留存逻辑：
+Asymmetric memory retention logic specifically designed for RAG scenarios:
 
-* **近场全量 (Full-Text)：** 仅保留最近 2 轮对话的原始文本，维持即时的对话语气与流畅度。
-* **远场压缩 (Summary)：** 2 轮之前的历史记录自动触发 **Summary 压缩**，将冗长的对话转为精炼的语义线索。
+* **Short-term (Full-Text):** Retains full raw text for only the most recent 2 turns to maintain immediate conversational tone and fluency.
+* **Long-term (Summary):** Historical records prior to the last 2 turns automatically trigger **Summary Compression**, converting verbose dialogues into refined semantic cues.
 
-### 3. 检索轨迹清理 (Retrieval Trace Cleaning)
+### 3. Retrieval Trace Cleaning
 
-专门针对工具返回的“脏数据”进行处理：
+Specialized processing for "dirty data" returned by tools:
 
-* **噪声过滤：** 自动识别并剔除工具返回的原始调试日志、冗余错误信息（如 "Information not found"）。
-* **语义蒸馏：** 对检索到的 MD 文档片段进行去冗余处理，只向模型输送最核心的知识点，防止上下文污染。
+* **Noise Filtering:** Automatically identifies and prunes raw debugging logs and redundant error messages (e.g., "Information not found") returned by tools.
+* **Semantic Distillation:** De-duplicates retrieved Markdown fragments, feeding only the most essential knowledge points to the model to prevent context pollution.
 
 ---
 
-## 🛠️ 记忆结构示例 / Memory Structure
+## 🛠️ Memory Structure Example
 
-处理后的上下文构建逻辑如下：
+The logic for constructing the processed context is as follows:
 
-| 层次 | 处理方式 | 包含内容 |
+| Layer | Processing Method | Contents |
 | --- | --- | --- |
-| **System 层** | **永久保留** | 核心角色设定、任务指令、操作约束 |
-| **远场记忆** | **语义摘要** | 前序轮次的任务目标、已确认的事实结论 |
-| **近场记忆** | **完整文本** | 用户最近的提问、Agent 最近的详细回答 |
-| **工具缓存** | **精简注入** | 经过清洗后的 MD 分块、必要的元数据路径 |
+| **System Layer** | **Permanent Retention** | Core persona settings, task instructions, and operational constraints. |
+| **Long-term Memory** | **Semantic Summary** | Previous task objectives and confirmed factual conclusions. |
+| **Short-term Memory** | **Full-Text** | Most recent user queries and detailed Agent responses. |
+| **Tool Cache** | **Streamlined Injection** | Cleaned Markdown chunks and essential metadata paths. |
