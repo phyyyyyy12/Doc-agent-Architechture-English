@@ -8,7 +8,6 @@
 | --- | --- | --- |
 | **1. Memory Management** | [Dynamic Token Window & Semantic Compression](./docs/memory/index.md) | [From "Keep Everything" to "Token Efficiency"](./docs/memory/evolution.md) |
 | **2. Document Parser** | [Markdown Structure-Aware Intelligent Chunking](./docs/parser/index.md) | [From "Brute-Force Splitting" to "Structural Awareness"](./docs/parser/evolution.md) |
-| **3. Query Optimization** | [Semantic Hierarchy Retrieval Strategy](./docs/query/index.md) | [Leveraging Markdown Structure to Boost Recall](./docs/query/evolution.md) |
 
 ---
 
