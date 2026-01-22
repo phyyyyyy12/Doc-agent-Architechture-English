@@ -1,6 +1,6 @@
 # 🏢 Tec-Document-Agent Architecture
 
-> A record of architectural evolution for enterprise-grade Q&A Agents based on deep Markdown parsing.
+> A record of architectural evolution for enterprise-grade Tech-Doc Agents based on deep parsing.
 
 ## 🗺️ Architecture Navigation
 
