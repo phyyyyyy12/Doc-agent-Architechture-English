@@ -1,4 +1,4 @@
-# 🏢 Tec-Document-Agent Architecture
+# 🏢 Tech-Document-Agent Architecture
 
 > A record of architectural evolution for enterprise-grade Tech-Doc Agents based on deep parsing.
 
