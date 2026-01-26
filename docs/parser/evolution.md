@@ -4,7 +4,7 @@
 
 ### 📅 Project Milestones
 
-#### **v2.0 - Structure-Aware Parser (Current)** `2026-01-06`
+#### **v2.0 - Structure-Aware Parser (Current)** ``
 
 * **Core Philosophy:** Moving away from "brute-force splitting" toward "deep syntactic parsing."
 * **Key Improvements:**
@@ -15,7 +15,7 @@
 
 * **Strategic Focus:** Explicitly focused on the Markdown ecosystem, deprecating complex RST support to pursue maximum parsing speed and accuracy.
 
-#### **v1.0 - Basic Chunking Scheme** `2025-12-22`
+#### **v1.0 - Basic Chunking Scheme** ``
 
 * **Approach:** Fixed-size Character Chunking.
 * **Pain Points:** Suffered from severe semantic fragmentation and loss of context, leading to poor Agent performance in code explanation scenarios.
